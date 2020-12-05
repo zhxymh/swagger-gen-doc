@@ -1,0 +1,2643 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AELF API 1.0",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/blockChain/blockHeight": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get the height of the current chain.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/block": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get information about a given block by block hash. Otionally with the list of its transactions.",
+        "parameters": [
+          {
+            "name": "blockHash",
+            "in": "query",
+            "description": "block hash",
+            "schema": {
+              "type": "string",
+              "description": "block hash",
+              "nullable": true
+            }
+          },
+          {
+            "name": "includeTransactions",
+            "in": "query",
+            "description": "include transactions or not",
+            "schema": {
+              "type": "boolean",
+              "description": "include transactions or not",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDto"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDto"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDto"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/blockByHeight": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get information about a given block by block height. Optionally with the list of its transactions.",
+        "parameters": [
+          {
+            "name": "blockHeight",
+            "in": "query",
+            "description": "block height",
+            "schema": {
+              "type": "integer",
+              "description": "block height",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "includeTransactions",
+            "in": "query",
+            "description": "include transactions or not",
+            "schema": {
+              "type": "boolean",
+              "description": "include transactions or not",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDto"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDto"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDto"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/transactionPoolStatus": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get the transaction pool status.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionPoolStatusOutput"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionPoolStatusOutput"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionPoolStatusOutput"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionPoolStatusOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/blockState": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get the current state about a given block",
+        "parameters": [
+          {
+            "name": "blockHash",
+            "in": "query",
+            "description": "block hash",
+            "schema": {
+              "type": "string",
+              "description": "block hash",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockStateDto"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockStateDto"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockStateDto"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockStateDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/chainStatus": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get the current status of the block chain.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChainStatusDto"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChainStatusDto"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChainStatusDto"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChainStatusDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/contractFileDescriptorSet": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get the protobuf definitions related to a contract",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "contract address",
+            "schema": {
+              "type": "string",
+              "description": "contract address",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/taskQueueStatus": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskQueueInfoDto"
+                  }
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskQueueInfoDto"
+                  }
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskQueueInfoDto"
+                  }
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskQueueInfoDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/executeTransaction": {
+      "post": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Call a read-only method on a contract.",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteTransactionDto"
+              }
+            },
+            "application/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteTransactionDto"
+              }
+            },
+            "text/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteTransactionDto"
+              }
+            },
+            "application/*+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteTransactionDto"
+              }
+            },
+            "application/x-protobuf; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteTransactionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/executeRawTransaction": {
+      "post": {
+        "tags": [
+          "BlockChain"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRawTransactionDto"
+              }
+            },
+            "application/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRawTransactionDto"
+              }
+            },
+            "text/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRawTransactionDto"
+              }
+            },
+            "application/*+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRawTransactionDto"
+              }
+            },
+            "application/x-protobuf; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRawTransactionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/rawTransaction": {
+      "post": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Creates an unsigned serialized transaction",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRawTransactionInput"
+              }
+            },
+            "application/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRawTransactionInput"
+              }
+            },
+            "text/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRawTransactionInput"
+              }
+            },
+            "application/*+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRawTransactionInput"
+              }
+            },
+            "application/x-protobuf; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRawTransactionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRawTransactionOutput"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRawTransactionOutput"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRawTransactionOutput"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRawTransactionOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/sendRawTransaction": {
+      "post": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "send a transaction",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRawTransactionInput"
+              }
+            },
+            "application/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRawTransactionInput"
+              }
+            },
+            "text/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRawTransactionInput"
+              }
+            },
+            "application/*+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRawTransactionInput"
+              }
+            },
+            "application/x-protobuf; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRawTransactionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendRawTransactionOutput"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendRawTransactionOutput"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendRawTransactionOutput"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendRawTransactionOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/sendTransaction": {
+      "post": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Broadcast a transaction",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionInput"
+              }
+            },
+            "application/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionInput"
+              }
+            },
+            "text/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionInput"
+              }
+            },
+            "application/*+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionInput"
+              }
+            },
+            "application/x-protobuf; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendTransactionOutput"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendTransactionOutput"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendTransactionOutput"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendTransactionOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/sendTransactions": {
+      "post": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Broadcast multiple transactions",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionsInput"
+              }
+            },
+            "application/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionsInput"
+              }
+            },
+            "text/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionsInput"
+              }
+            },
+            "application/*+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionsInput"
+              }
+            },
+            "application/x-protobuf; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/transactionResult": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get the current status of a transaction",
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "query",
+            "description": "transaction id",
+            "schema": {
+              "type": "string",
+              "description": "transaction id",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResultDto"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResultDto"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResultDto"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResultDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/transactionResults": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get multiple transaction results.",
+        "parameters": [
+          {
+            "name": "blockHash",
+            "in": "query",
+            "description": "block hash",
+            "schema": {
+              "type": "string",
+              "description": "block hash",
+              "nullable": true
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offset",
+            "schema": {
+              "type": "integer",
+              "description": "offset",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "schema": {
+              "type": "integer",
+              "description": "limit",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionResultDto"
+                  }
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionResultDto"
+                  }
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionResultDto"
+                  }
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blockChain/merklePathByTransactionId": {
+      "get": {
+        "tags": [
+          "BlockChain"
+        ],
+        "summary": "Get the merkle path of a transaction.",
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "description": "",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerklePathDto"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerklePathDto"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerklePathDto"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerklePathDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/net/peer": {
+      "post": {
+        "tags": [
+          "Net"
+        ],
+        "summary": "Attempts to add a node to the connected network nodes",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPeerInput"
+              }
+            },
+            "application/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPeerInput"
+              }
+            },
+            "text/json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPeerInput"
+              }
+            },
+            "application/*+json; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPeerInput"
+              }
+            },
+            "application/x-protobuf; v=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPeerInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Net"
+        ],
+        "summary": "Attempts to remove a node from the connected network nodes",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "ip address",
+            "schema": {
+              "type": "string",
+              "description": "ip address",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/net/peers": {
+      "get": {
+        "tags": [
+          "Net"
+        ],
+        "summary": "Get peer info about the connected network nodes",
+        "parameters": [
+          {
+            "name": "withMetrics",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeerDto"
+                  }
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeerDto"
+                  }
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeerDto"
+                  }
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/net/networkInfo": {
+      "get": {
+        "tags": [
+          "Net"
+        ],
+        "summary": "Get information about the node’s connection to the network.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNetworkInfoOutput"
+                }
+              },
+              "application/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNetworkInfoOutput"
+                }
+              },
+              "text/json; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNetworkInfoOutput"
+                }
+              },
+              "application/x-protobuf; v=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNetworkInfoOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ControllerInterfaceApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MethodParameterApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeAsString": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeSimple": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOptional": {
+            "type": "boolean"
+          },
+          "defaultValue": {
+            "type": "object",
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ParameterApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "nameOnMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeSimple": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOptional": {
+            "type": "boolean"
+          },
+          "defaultValue": {
+            "type": "object",
+            "additionalProperties": false,
+            "nullable": true
+          },
+          "constraintTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "bindingSourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptorName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReturnValueApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeSimple": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActionApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "uniqueName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "supportedVersions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "parametersOnMethod": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MethodParameterApiDescriptionModel"
+            },
+            "nullable": true
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParameterApiDescriptionModel"
+            },
+            "nullable": true
+          },
+          "returnValue": {
+            "$ref": "#/components/schemas/ReturnValueApiDescriptionModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ControllerApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "controllerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "interfaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ControllerInterfaceApiDescriptionModel"
+            },
+            "nullable": true
+          },
+          "actions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ActionApiDescriptionModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ModuleApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "rootPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteServiceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "controllers": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ControllerApiDescriptionModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PropertyApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeSimple": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TypeApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "baseType": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnum": {
+            "type": "boolean"
+          },
+          "enumNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "enumValues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true
+          },
+          "genericArguments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PropertyApiDescriptionModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationApiDescriptionModel": {
+        "type": "object",
+        "properties": {
+          "modules": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ModuleApiDescriptionModel"
+            },
+            "nullable": true
+          },
+          "types": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TypeApiDescriptionModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoteServiceValidationErrorInfo": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoteServiceErrorInfo": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationErrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemoteServiceValidationErrorInfo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RemoteServiceErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/RemoteServiceErrorInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LanguageInfo": {
+        "type": "object",
+        "properties": {
+          "cultureName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "uiCultureName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "flagIcon": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateTimeFormatDto": {
+        "type": "object",
+        "properties": {
+          "calendarAlgorithmType": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateTimeFormatLong": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortDatePattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullDateTimePattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateSeparator": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortTimePattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "longTimePattern": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurrentCultureDto": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "englishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "threeLetterIsoLanguageName": {
+            "type": "string",
+            "nullable": true
+          },
+          "twoLetterIsoLanguageName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRightToLeft": {
+            "type": "boolean"
+          },
+          "cultureName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "nativeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateTimeFormat": {
+            "$ref": "#/components/schemas/DateTimeFormatDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NameValue": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationLocalizationConfigurationDto": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LanguageInfo"
+            },
+            "nullable": true
+          },
+          "currentCulture": {
+            "$ref": "#/components/schemas/CurrentCultureDto"
+          },
+          "defaultResourceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "languagesMap": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/NameValue"
+              }
+            },
+            "nullable": true
+          },
+          "languageFilesMap": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/NameValue"
+              }
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationAuthConfigurationDto": {
+        "type": "object",
+        "properties": {
+          "policies": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "nullable": true
+          },
+          "grantedPolicies": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationSettingConfigurationDto": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurrentUserDto": {
+        "type": "object",
+        "properties": {
+          "isAuthenticated": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationFeatureConfigurationDto": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MultiTenancyInfoDto": {
+        "type": "object",
+        "properties": {
+          "isEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurrentTenantDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IanaTimeZone": {
+        "type": "object",
+        "properties": {
+          "timeZoneName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WindowsTimeZone": {
+        "type": "object",
+        "properties": {
+          "timeZoneId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeZone": {
+        "type": "object",
+        "properties": {
+          "iana": {
+            "$ref": "#/components/schemas/IanaTimeZone"
+          },
+          "windows": {
+            "$ref": "#/components/schemas/WindowsTimeZone"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimingDto": {
+        "type": "object",
+        "properties": {
+          "timeZone": {
+            "$ref": "#/components/schemas/TimeZone"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClockDto": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocalizableStringDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "resource": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyApiGetDto": {
+        "type": "object",
+        "properties": {
+          "isAvailable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyApiCreateDto": {
+        "type": "object",
+        "properties": {
+          "isAvailable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyApiUpdateDto": {
+        "type": "object",
+        "properties": {
+          "isAvailable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyApiDto": {
+        "type": "object",
+        "properties": {
+          "onGet": {
+            "$ref": "#/components/schemas/ExtensionPropertyApiGetDto"
+          },
+          "onCreate": {
+            "$ref": "#/components/schemas/ExtensionPropertyApiCreateDto"
+          },
+          "onUpdate": {
+            "$ref": "#/components/schemas/ExtensionPropertyApiUpdateDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyUiTableDto": {
+        "type": "object",
+        "properties": {
+          "isVisible": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyUiFormDto": {
+        "type": "object",
+        "properties": {
+          "isVisible": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyUiDto": {
+        "type": "object",
+        "properties": {
+          "onTable": {
+            "$ref": "#/components/schemas/ExtensionPropertyUiTableDto"
+          },
+          "onCreateForm": {
+            "$ref": "#/components/schemas/ExtensionPropertyUiFormDto"
+          },
+          "onEditForm": {
+            "$ref": "#/components/schemas/ExtensionPropertyUiFormDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyAttributeDto": {
+        "type": "object",
+        "properties": {
+          "typeSimple": {
+            "type": "string",
+            "nullable": true
+          },
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionPropertyDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeSimple": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "$ref": "#/components/schemas/LocalizableStringDto"
+          },
+          "api": {
+            "$ref": "#/components/schemas/ExtensionPropertyApiDto"
+          },
+          "ui": {
+            "$ref": "#/components/schemas/ExtensionPropertyUiDto"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtensionPropertyAttributeDto"
+            },
+            "nullable": true
+          },
+          "configuration": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true
+          },
+          "defaultValue": {
+            "type": "object",
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EntityExtensionDto": {
+        "type": "object",
+        "properties": {
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExtensionPropertyDto"
+            },
+            "nullable": true
+          },
+          "configuration": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ModuleExtensionDto": {
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/EntityExtensionDto"
+            },
+            "nullable": true
+          },
+          "configuration": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionEnumFieldDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "object",
+            "additionalProperties": false,
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExtensionEnumDto": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtensionEnumFieldDto"
+            },
+            "nullable": true
+          },
+          "localizationResource": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectExtensionsDto": {
+        "type": "object",
+        "properties": {
+          "modules": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ModuleExtensionDto"
+            },
+            "nullable": true
+          },
+          "enums": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExtensionEnumDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationConfigurationDto": {
+        "type": "object",
+        "properties": {
+          "localization": {
+            "$ref": "#/components/schemas/ApplicationLocalizationConfigurationDto"
+          },
+          "auth": {
+            "$ref": "#/components/schemas/ApplicationAuthConfigurationDto"
+          },
+          "setting": {
+            "$ref": "#/components/schemas/ApplicationSettingConfigurationDto"
+          },
+          "currentUser": {
+            "$ref": "#/components/schemas/CurrentUserDto"
+          },
+          "features": {
+            "$ref": "#/components/schemas/ApplicationFeatureConfigurationDto"
+          },
+          "multiTenancy": {
+            "$ref": "#/components/schemas/MultiTenancyInfoDto"
+          },
+          "currentTenant": {
+            "$ref": "#/components/schemas/CurrentTenantDto"
+          },
+          "timing": {
+            "$ref": "#/components/schemas/TimingDto"
+          },
+          "clock": {
+            "$ref": "#/components/schemas/ClockDto"
+          },
+          "objectExtensions": {
+            "$ref": "#/components/schemas/ObjectExtensionsDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlockHeaderDto": {
+        "type": "object",
+        "properties": {
+          "previousBlockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "merkleTreeRootOfTransactions": {
+            "type": "string",
+            "nullable": true
+          },
+          "merkleTreeRootOfWorldState": {
+            "type": "string",
+            "nullable": true
+          },
+          "merkleTreeRootOfTransactionState": {
+            "type": "string",
+            "nullable": true
+          },
+          "extra": {
+            "type": "string",
+            "nullable": true
+          },
+          "height": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "chainId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bloom": {
+            "type": "string",
+            "nullable": true
+          },
+          "signerPubkey": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlockBodyDto": {
+        "type": "object",
+        "properties": {
+          "transactionsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlockDto": {
+        "type": "object",
+        "properties": {
+          "blockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "header": {
+            "$ref": "#/components/schemas/BlockHeaderDto"
+          },
+          "body": {
+            "$ref": "#/components/schemas/BlockBodyDto"
+          },
+          "blockSize": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetTransactionPoolStatusOutput": {
+        "type": "object",
+        "properties": {
+          "queued": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "validated": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlockStateDto": {
+        "type": "object",
+        "properties": {
+          "blockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "blockHeight": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "changes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "deletes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChainStatusDto": {
+        "type": "object",
+        "properties": {
+          "chainId": {
+            "type": "string",
+            "nullable": true
+          },
+          "branches": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "nullable": true
+          },
+          "notLinkedBlocks": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "longestChainHeight": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "longestChainHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "genesisBlockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "genesisContractAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastIrreversibleBlockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastIrreversibleBlockHeight": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "bestChainHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "bestChainHeight": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TaskQueueInfoDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecuteTransactionDto": {
+        "type": "object",
+        "properties": {
+          "rawTransaction": {
+            "type": "string",
+            "description": "raw transaction",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecuteRawTransactionDto": {
+        "type": "object",
+        "properties": {
+          "rawTransaction": {
+            "type": "string",
+            "description": "raw transaction",
+            "nullable": true
+          },
+          "signature": {
+            "type": "string",
+            "description": "signature",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateRawTransactionInput": {
+        "required": [
+          "from",
+          "methodName",
+          "params",
+          "refBlockHash",
+          "refBlockNumber",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "from address"
+          },
+          "to": {
+            "type": "string",
+            "description": "to address"
+          },
+          "refBlockNumber": {
+            "type": "integer",
+            "description": "refer block height",
+            "format": "int64"
+          },
+          "refBlockHash": {
+            "type": "string",
+            "description": "refer block hash"
+          },
+          "methodName": {
+            "type": "string",
+            "description": "contract method name"
+          },
+          "params": {
+            "type": "string",
+            "description": "contract method parameters"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateRawTransactionOutput": {
+        "type": "object",
+        "properties": {
+          "rawTransaction": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SendRawTransactionInput": {
+        "type": "object",
+        "properties": {
+          "transaction": {
+            "type": "string",
+            "description": "raw transaction",
+            "nullable": true
+          },
+          "signature": {
+            "type": "string",
+            "description": "signature",
+            "nullable": true
+          },
+          "returnTransaction": {
+            "type": "boolean",
+            "description": "return transaction detail or not"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionDto": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "to": {
+            "type": "string",
+            "nullable": true
+          },
+          "refBlockNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "refBlockPrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "methodName": {
+            "type": "string",
+            "nullable": true
+          },
+          "params": {
+            "type": "string",
+            "nullable": true
+          },
+          "signature": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SendRawTransactionOutput": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "transaction": {
+            "$ref": "#/components/schemas/TransactionDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SendTransactionInput": {
+        "type": "object",
+        "properties": {
+          "rawTransaction": {
+            "type": "string",
+            "description": "raw transaction",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SendTransactionOutput": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SendTransactionsInput": {
+        "type": "object",
+        "properties": {
+          "rawTransactions": {
+            "type": "string",
+            "description": "raw transactions",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogEventDto": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "indexed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "nonIndexed": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionResultDto": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "logs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogEventDto"
+            },
+            "nullable": true
+          },
+          "bloom": {
+            "type": "string",
+            "nullable": true
+          },
+          "blockNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "blockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "transaction": {
+            "$ref": "#/components/schemas/TransactionDto"
+          },
+          "returnValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionSize": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerklePathDto": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AddPeerInput": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "ip address",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Timestamp": {
+        "type": "object",
+        "properties": {
+          "seconds": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nanos": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequestMetric": {
+        "type": "object",
+        "properties": {
+          "roundTripTime": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "methodName": {
+            "type": "string",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "requestTime": {
+            "$ref": "#/components/schemas/Timestamp"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PeerDto": {
+        "type": "object",
+        "properties": {
+          "ipAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "protocolVersion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "connectionTime": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "connectionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "inbound": {
+            "type": "boolean"
+          },
+          "bufferedTransactionsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bufferedBlocksCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bufferedAnnouncementsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestMetric"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNetworkInfoOutput": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "node version",
+            "nullable": true
+          },
+          "protocolVersion": {
+            "type": "integer",
+            "description": "network protocol version",
+            "format": "int32"
+          },
+          "connections": {
+            "type": "integer",
+            "description": "total number of open connections between this node and other nodes",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
