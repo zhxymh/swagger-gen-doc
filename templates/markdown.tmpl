@@ -1,7 +1,76 @@
-# swagger gen doc 
+# {{ .Title }}
 
-## {{ .Info.Title }}
-  I am api doc.
+<a name="overview"></a>
+## Overview
 
-current version: {{ .Info.Version }}
+### Version information
+*Version* : {{.Version}}
 
+{{range .Api -}}
+
+<a name="{{.Url}}"></a>
+## {{.Summary}}
+
+```
+{{.Mehtod}} {{.Url}}
+```
+
+{{if .HasParameters}}
+### Parameters
+|Type|Name|Description|Schema|Default|
+|---|---|---|---|---|
+{{range .Parameters -}}
+|**{{.In}}**|**{{.Name}}**  {{if .Nullable}}(*optional*){{end}}|{{.Description}}|{{.Type}}|{{.Default}}|
+{{end}}
+{{end}}
+
+{{if .HasRequestBody }}
+### RequestBody
+|Type|Description|Schema|
+|---|---|---|
+|**Body**|{{.RequestBody.Description}}|[{{.RequestBody.Type}}](#{{.RequestBody.Type}})|
+{{end}}
+
+{{if .HasResponses }}
+### Responses
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**{{.Responses.StateCode}}**|{{.Responses.Description}}|{{if .Responses.RefType}}[{{.Responses.RefType}}](#{{.Responses.RefType}}){{else if .Responses.ItemRefType}}{{.Responses.Type}}<[{{.Responses.ItemRefType}}](#{{.Responses.ItemRefType}})>{{else if .Responses.ItemType}}{{.Responses.Type}}<{{.Responses.ItemType}}>{{else}}{{.Responses.Type}}{{end}}|
+{{end}}
+
+{{if .HasRequestBody }}
+### Consumes
+{{range .RequestBody.Content}}
+* {{.}}
+{{end}}
+{{end}}
+
+{{if .HasResponses }}
+### Produces
+{{range .Responses.Content}}
+* {{.}}
+{{end}}
+{{end}}
+
+{{if .HasTags }}
+### Tags
+{{range .Tags}}
+* {{.}}
+{{end}}
+{{end}}
+
+{{end}}
+
+{{range .ApiModel -}}
+
+<a name="{{.Name}}"></a>
+
+## {{.Name}}
+
+|Name|Description|Schema|
+|---|---|---|
+{{range .Properties -}}
+|{{.Name}}|{{.Description}}|{{if .RefType}}[{{.RefType}}](#{{.RefType}}){{else if .ItemRefType}}{{.Type}}<[{{.ItemRefType}}](#{{.ItemRefType}})>{{else if .ItemType}}{{.Type}}<{{.ItemType}}>{{else}}{{.Type}}{{end}}|
+{{end}}
+
+{{end}}

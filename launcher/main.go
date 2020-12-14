@@ -56,7 +56,7 @@ func generateDoc(json *[]byte, outFile string, tmplFile string) error {
 		return err
 	}
 
-	file, err := os.OpenFile(outFile, os.O_WRONLY|os.O_CREATE, 0666)
+	file, err := os.OpenFile(outFile, os.O_RDWR|os.O_TRUNC|os.O_CREATE, 0766)
 	if err != nil {
 		return err
 	}
